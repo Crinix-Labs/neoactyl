@@ -1,7 +1,22 @@
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 function Home() {
-  return <h1>Home</h1>;
+  const { response, setResponse } = useState("");
+
+  useEffect( () => {
+    axios.get("/api")
+    .then((res) => {
+        setResponse(res.data);
+    }).catch((err) => {
+      console.log(err);
+    })
+  })
+  return(<>
+  <h1>Home</h1>
+  <h3>res: {response}</h3>
+  </>);
 }
 
 function About() {
