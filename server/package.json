@@ -2,20 +2,22 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ."
   },
   "keywords": [],
-  "author": "",
+  "author": "Crinix-labs",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "dependencies": {
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "express": "^4.21.2",
     "passport": "^0.7.0",
     "passport-discord": "^0.1.4",
-    "sequelize": "^6.37.5"
+    "sequelize": "^6.37.5",
+    "typescript": "^5.7.3"
   }
 }
