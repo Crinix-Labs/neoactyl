@@ -4,21 +4,24 @@ import axios from "axios";
 
 function Home() {
   const [response, setResponse] = useState("");
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     axios
       .get("/api")
       .then((res) => {
-        setResponse(res.data);
+        setResponse(res.data.message);
       })
       .catch((err) => {
-        console.log(err);
+        console.error("API call failed: ", err);
+        setError("Failed to load data");
       });
   }, []);
+
   return (
     <>
       <h1>Home</h1>
-      <h3>res: {response}</h3>
+      {error ? <h3>Error: {error}</h3> : <h3>Response: {response}</h3>}
     </>
   );
 }
