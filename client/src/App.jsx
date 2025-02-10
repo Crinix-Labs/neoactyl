@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -41,5 +42,19 @@ function App() {
     </Router>
   );
 }
+=======
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import Dashboard from './pages/Dashboard';
+
+const App = () => (
+  <Router>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+    </Routes>
+  </Router>
+);
+>>>>>>> 509f58bcc18da08c4bd5e06ca912f64c2d0f2153
 
 export default App;
