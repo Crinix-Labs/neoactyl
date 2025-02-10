@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 function Home() {
-  const [ response, setResponse ] = useState("");
+  const [response, setResponse] = useState("");
 
   useEffect(() => {
     axios
@@ -31,11 +31,11 @@ function App() {
   return (
     <Router>
       <nav>
-        <Link to="/">Home</Link> | <Link to="/list">About</Link>
+        <Link to="/">Home</Link> | <Link to="/about">About</Link>
       </nav>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/list" element={<About />} />
+        <Route path="/about" element={<About />} />
       </Routes>
     </Router>
   );
