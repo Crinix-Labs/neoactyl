@@ -8,6 +8,7 @@ interface UserAttributes {
   dcid: number;
   username: string;
   email: string;
+  password: string;
 }
 
 // Define User model
@@ -17,6 +18,7 @@ class User extends Model<UserAttributes> {
   public dcid!: number;
   public username!: string;
   public email!: string;
+  public password!: string;
 }
 
 // Initialize the model
@@ -34,7 +36,7 @@ User.init(
     },
     dcid: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
       unique: true,
     },
     username: {
@@ -45,6 +47,10 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
   },
   {
