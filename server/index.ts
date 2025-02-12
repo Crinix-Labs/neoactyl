@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser"
 import authRoute from "./apis/auth.ts";
-import "./models/db.ts";
+import {sync} from "./models/db.ts";
 
 const app = express();
 
@@ -15,5 +15,7 @@ app.get('/api/', (req, res) => {
 })
 
 app.use(authRoute);
+
+sync()
 
 app.listen(3000, () => console.log("api running successfully on port 3000"));
