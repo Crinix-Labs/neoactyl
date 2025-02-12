@@ -12,6 +12,10 @@
   "license": "ISC",
   "type": "module",
   "dependencies": {
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "express": "^4.21.2",
@@ -20,7 +24,8 @@
     "passport-discord": "^0.1.4",
     "sequelize": "^6.37.5",
     "sqlite3": "^5.1.7",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "web-vitals": "^2.1.4"
   },
   "devDependencies": {
     "@types/node": "^22.13.1",

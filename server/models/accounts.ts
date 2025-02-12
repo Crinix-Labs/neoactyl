@@ -1,4 +1,4 @@
-import sequelize from "./db";
+import sequelize from "./db.ts";
 import { DataTypes, Model } from "sequelize";
 
 // Define User attributes based on Pterodactyl’s database schema
