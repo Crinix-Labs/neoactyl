@@ -1,21 +1,35 @@
-import express from "express";
-import cors from "cors";
-import cookieParser from "cookie-parser"
-import authRoute from "./apis/auth.ts";
-import {sync} from "./models/db.ts";
+import express from "express"
+import http from "http"
+import WebSocket from "ws"
+import dotenv from "dotenv"
+import cors from "cors"
+import { authRouter } from "./routes/auth.ts"
+import { serverRouter } from "./routes/servers.ts"
+import { errorHandler } from "./middleware/errorHandler.ts"
+import { setupWebSocket } from "./websocket.ts"
 
-const app = express();
+dotenv.config()
 
-app.use(cors({ origin: "*"}));
-app.use(express.json());
-app.use(cookieParser())
+const app = express()
+const server = http.createServer(app)
+const wss = new WebSocket.Server({ server })
 
-app.get('/api/', (req, res) => {
-    res.json({ message: "Working", success: true});
+app.use(cors())
+app.use(express.json())
+
+// Routes
+app.use("/api/auth", authRouter)
+app.use("/api/servers", serverRouter)
+
+// WebSocket setup
+setupWebSocket(wss)
+
+// Error handling middleware
+app.use(errorHandler)
+
+const PORT = process.env.PORT || 3000
+
+server.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`)
 })
 
-app.use(authRoute);
-
-sync()
-
-app.listen(3000, () => console.log("api running successfully on port 3000"));

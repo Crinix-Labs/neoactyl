@@ -31,14 +31,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setIsAuthenticated(true)
       } catch (error) {
         setUser(null)
-        setIsAuthenticated(true)
+        setIsAuthenticated(false)
       }
     }
-    setIsAuthenticated(true)
-    setUser({
-      username: "samir",
-      root_admin: true
-    })
+    checkAuth()
   }, [])
 
   const login = async (email: string, password: string) => {
