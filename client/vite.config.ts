@@ -13,5 +13,10 @@ export default defineConfig({
     allowedHosts: [
       "s7l.project.crinix.us.kg"
     ],
+    proxy: {
+      "/api": {
+        target: "http://s7l.project.crinix.us.kg:3000"
+      }
+    },
   }
 })

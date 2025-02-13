@@ -1,6 +1,5 @@
 import type React from "react"
-import { createContext, useState, useContext, useEffect } from "react"
-import axios from "axios"
+import { createContext, useState, useContext } from "react"
 
 interface AuthContextType {
   isAuthenticated: boolean
@@ -13,30 +12,22 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined)
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false)
 
-  useEffect(() => {
-    const checkAuth = async () => {
-      try {
-        const response = await axios.get("/api/auth/check", { withCredentials: true })
-        setIsAuthenticated(response.data.authenticated)
-      } catch (error) {
-        setIsAuthenticated(false)
-      }
-    }
-    checkAuth()
-  }, [])
-
   const login = async (apiKey: string) => {
-    try {
-      const response = await axios.post("/api/auth/login", { apiKey }, { withCredentials: true })
+    // Simulate API call
+    await new Promise((resolve) => setTimeout(resolve, 1000))
+    if (apiKey === "valid_api_key") {
       setIsAuthenticated(true)
-    } catch (error) {
-      throw new Error("Login failed")
+      console.log("User authenticated:", isAuthenticated)
+    } else {
+      throw new Error("Invalid API key")
     }
   }
 
   const logout = () => {
-    axios.post("/api/auth/logout", {}, { withCredentials: true })
-    setIsAuthenticated(false)
+    // Simulate API call
+    setTimeout(() => {
+      setIsAuthenticated(false)
+    }, 500)
   }
 
   return <AuthContext.Provider value={{ isAuthenticated, login, logout }}>{children}</AuthContext.Provider>

@@ -2,6 +2,7 @@ import type React from "react"
 import { Link } from "react-router-dom"
 import { motion } from "framer-motion"
 import { useAuth } from "../context/AuthContext"
+import { Home, Settings, Users, ShoppingCart, Coffee, LinkIcon, PlusCircle, Box, Server, Shield } from "lucide-react"
 
 interface SidebarProps {
   open: boolean
@@ -10,6 +11,19 @@ interface SidebarProps {
 
 const Sidebar: React.FC<SidebarProps> = ({ open, setOpen }) => {
   const { logout } = useAuth()
+
+  const menuItems = [
+    { icon: Home, text: "Dashboard", link: "/" },
+    { icon: Settings, text: "Settings", link: "/settings" },
+    { icon: Shield, text: "Admin", link: "/admin" },
+    { icon: Users, text: "Users", link: "/users" },
+    { icon: ShoppingCart, text: "Shop", link: "/shop" },
+    { icon: Coffee, text: "AFK", link: "/afk" },
+    { icon: LinkIcon, text: "Linkvertise", link: "/linkvertise" },
+    { icon: PlusCircle, text: "Create Server", link: "/create-server" },
+    { icon: Box, text: "Eggs", link: "/eggs" },
+    { icon: Server, text: "Nodes", link: "/nodes" },
+  ]
 
   return (
     <>
@@ -31,20 +45,17 @@ const Sidebar: React.FC<SidebarProps> = ({ open, setOpen }) => {
           <span className="text-white text-2xl font-semibold">Ptero Dashboard</span>
         </div>
         <nav className="mt-5">
-          <Link
-            to="/"
-            className="flex items-center px-6 py-2 mt-4 text-gray-600 hover:bg-gray-100 hover:bg-opacity-25 hover:text-gray-800 dark:text-gray-300 dark:hover:text-white"
-          >
-            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-              />
-            </svg>
-            <span className="mx-3">Dashboard</span>
-          </Link>
+          {menuItems.map((item, index) => (
+            <Link
+              key={index}
+              to={item.link}
+              className="flex items-center px-6 py-2 mt-4 text-gray-600 hover:bg-gray-100 hover:bg-opacity-25 hover:text-gray-800 dark:text-gray-300 dark:hover:text-white"
+              onClick={() => setOpen(false)}
+            >
+              <item.icon className="h-6 w-6" />
+              <span className="mx-3">{item.text}</span>
+            </Link>
+          ))}
           <button
             onClick={logout}
             className="flex items-center px-6 py-2 mt-4 text-gray-600 hover:bg-gray-100 hover:bg-opacity-25 hover:text-gray-800 dark:text-gray-300 dark:hover:text-white w-full text-left"
