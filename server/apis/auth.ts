@@ -4,18 +4,12 @@ import jwt from "jsonwebtoken";
 import User from "../models/accounts.ts";
 import Settings from "../models/settings.ts";
 
-const settings: any = async (setting: string) => {
-  return await Settings.findOne({ where: {
-    setting
-  }}).value;
-}
-
 const router = express.Router();
 const saltRounds = 10;
-const JWT_SECRET = settings("secret");
+const JWT_SECRET = "ow9uhskw08u2uos9d72uhso9du2uj938i3jdod9eu";
 
 // Register Route
-router.post("/register", async (req, res) => {
+router.post("/register", async (req: Request, res: Response) => {
   const { username, email, password } = req.body;
 
   if (!username || !email || !password) {
