@@ -1,0 +1,5 @@
+# Some general config
+[general]
+baseUrl = "s7l.project.crinix.us.kg"
+port = 3000
+setupMode = true
