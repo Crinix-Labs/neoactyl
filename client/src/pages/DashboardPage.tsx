@@ -20,11 +20,11 @@ const fetchServers = async (): Promise<Server[]> => {
 
 const DashboardPage: React.FC = () => {
   const { data: servers, isLoading, error } = useQuery<Server[]>(["servers"], fetchServers)
-
+/*
   if (typeof window === "undefined") {
     return null // Return null on server-side
   }
-
+*/
   if (isLoading) return <div>Loading...</div>
   if (error) return <div>An error has occurred: {(error as Error).message}</div>
 
