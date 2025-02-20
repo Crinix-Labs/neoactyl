@@ -1,4 +1,5 @@
 import Express from "express";
+import jwt from "jsonwebtoken";
 
 const router = Express.Router();
 
@@ -40,7 +41,11 @@ router.post("/api/login", (req, res) => {
       message: "Password mismatched try again or reset your password",
     });
   } else {
-    res.json({ success: true, user });
+    const token = jwt.sign(
+      user,
+      "anything can be secret try if you can find it its very loooooong brotha"
+    );
+    res.json({ success: true, token, user });
   }
 });
 
