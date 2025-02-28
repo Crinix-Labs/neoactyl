@@ -1,6 +1,7 @@
 import Express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
+import cookieParser from "cookie-parser";
 
 // Router import
 import loginRoute from "./api/login.ts";
@@ -11,10 +12,11 @@ const app = Express();
 app.use(bodyParser());
 app.use(cors("*"));
 app.use(Express.json());
+app.use(cookieParser());
 
 // Router define
 
-app.get("/", (req, res) => {
+app.get("/api/", (req, res) => {
   res.json({ status: "running", success: true });
 });
 app.use(loginRoute);
