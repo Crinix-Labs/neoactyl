@@ -1,2 +1,23 @@
 [general]
 name = "Lunix-Dash"
+logo = ""
+
+[domain]
+listen = "localhost"
+port = 5000 # the port to listen on allowed value{ integer(5), string(auto_ptrl) : for pterodactyl auto}
+
+[discord]
+clientId = "null"
+ClientSecret = "null"
+callback = "/api/auth/discord" # /api can't be removed or it will not work
+# Discord auth not available 
+
+[database]
+type = "sqlite"
+filename = "data.sqlite"
+
+[pterodactyl]
+# Url of pterodactyl panel to dashboard communicate with 
+panel = ""
+# Application key of pterodactyl panel
+api = "ptrl_0000000000000000000000000"
