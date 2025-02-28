@@ -3,8 +3,10 @@ import "./App.css";
 
 function App() {
   return (
-    <section className="flex items-center justify-center h-screen w-screen">
-      <div className="flex items-center justify-center ">
+    <section className="flex  p-16 items-center justify-center h-screen w-screen bg-cover bg-[url('https://i.redd.it/1vuo8te7j2c31.gif')]">
+
+      {/* Login Page */}
+      <div className="flex items-center justify-center h-screen w-[50vw] ">
         <div className=" flex mockup-window bg-base-300 min-w-[35vw] min-h-[60vh]">
           <h1 className="text-3xl neutral-content self-center ">
             Login To Lunix-x Dash
@@ -28,6 +30,15 @@ function App() {
               </label>
               <button className="btn btn-wide btn-ghost w-[100%] my-8 ">login</button>
             </form>
+          </div>
+        </div>
+      </div>
+
+      {/* Floating Island */}
+      <div className="  h-screen w-[50vw] flex justify-center items-center ">
+        <div className="rounded-lg size-[350px] glass flex justify-center items-center ">
+          <div className="">
+        < img className="" src="https://png.pngtree.com/png-vector/20230728/ourmid/pngtree-mindcraft-clipart-minecraft-pixel-art-illustration-with-trees-and-houses-and-vector-png-image_6811740.png" alt="Minecraft Floting island" className="m-4" />
           </div>
         </div>
       </div>
