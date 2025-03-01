@@ -1,15 +1,19 @@
 import { Sequelize } from 'sequelize';
+import toml from "toml";
+import fs from "fs";
 
+// load the config file
+const config = toml.parse(fs.readFileSync("../config.toml", "utf-8"));
 
-const isMySQL = process.env.DB_DIALECT === 'mysql';
+const isMySQL = config.database.type ? "mysql" : false;
 
 const sequelize = new Sequelize({
   dialect: isMySQL ? 'mysql' : 'sqlite',
   storage: isMySQL ? undefined : './database.sqlite', // Path to your SQLite database file
-  host: isMySQL ? 'localhost' : undefined, // MySQL host
-  username: isMySQL ? 'your_mysql_username' : undefined, // MySQL username
-  password: isMySQL ? 'your_mysql_password' : undefined, // MySQL password
-  database: isMySQL ? 'your_mysql_database' : undefined, // MySQL database name
+  host: isMySQL ? config.database.mysql.host : undefined, // MySQL host
+  username: isMySQL ? config.database.mysql.username : undefined, // MySQL username
+  password: isMySQL ? config.database.mysql.password : undefined, // MySQL password
+  database: isMySQL ? config.database.mysql.database : undefined, // MySQL database name
 });
 
 // Test the connection
