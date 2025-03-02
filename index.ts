@@ -25,6 +25,12 @@ app.use(cookieParser());
 app.get("/api/", (req, res) => {
   res.json({ status: "running", success: true });
 });
+
+app.get('/api/check-auth', (req, res) => {
+  const authCookie = req.cookies.authToken; // Adjust based on your auth cookie name
+  res.json({ authenticated: !!authCookie });
+});
+
 app.use(loginRoute);
 app.use(registerRoute);
 
