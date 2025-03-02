@@ -1,3 +1,4 @@
 i.sh
 node_modules
 config.toml
+data.sqlite

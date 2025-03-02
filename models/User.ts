@@ -3,7 +3,7 @@ import sequelize from "./db.ts";
 import toml from "toml";
 import fs from "node:fs";
 
-const config = toml.parse(fs.readFileSync("../config.toml", "utf-8"));
+const config = toml.parse(fs.readFileSync(process.cwd() + "/config.toml", "utf-8"));
 
 const User = sequelize.define("user", {
   id: {
@@ -30,31 +30,31 @@ const User = sequelize.define("user", {
   },
   ram: {
     type: DataTypes.INTEGER,
-    defaultValue: config.resources.ram,
+    defaultValue: config.Resources.ram,
   },
   disk: {
     type: DataTypes.INTEGER,
-    defaultValue: config.resources.disk,
+    defaultValue: config.Resources.disk,
   },
   cpu: {
     type: DataTypes.INTEGER,
-    defaultValue: config.resources.cpu,
+    defaultValue: config.Resources.cpu,
   },
   allocations: {
     type: DataTypes.INTEGER,
-    defaultValue: config.resources.allocations,
+    defaultValue: config.Resources.allocations,
   },
   databases: {
     type: DataTypes.INTEGER,
-    defaultValue: config.resources.database,
+    defaultValue: config.Resources.database,
   },
   backups: {
     type: DataTypes.INTEGER,
-    defaultValue: config.resources.backup,
+    defaultValue: config.Resources.backup,
   },
   slots: {
     type: DataTypes.INTEGER,
-    defaultValue: config.resources.slots,
+    defaultValue: config.Resources.slots,
   },
 });
 

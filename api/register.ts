@@ -1,16 +1,16 @@
 import Express from "express";
-import { Request, Response } from "@types/express";
 import bcrypt from "bcrypt";
 import User from "../models/User.ts";
 import toml from "toml";
 import fs from "node:fs";
 import axios from "axios";
+import path from "node:path";
 
 const router = Express.Router();
 
-const config = toml.parse(fs.readFileSync("../config.toml", "utf-8"));
+const config = toml.parse(fs.readFileSync(process.cwd() + "/config.toml", "utf-8"));
 
-router.post("/api/register", async (req: Request, res: Response) => {
+router.post("/api/register", async (req, res) => {
   const { username, email, firstname, lastname, password } = req.body;
 
   if (!email || !username || !password) {
@@ -42,14 +42,7 @@ router.post("/api/register", async (req: Request, res: Response) => {
       username,
       email,
       password: hashedPassword,
-      coins: 0,
-      ram: config.resources.ram,
-      disk: config.resources.disk,
-      cpu: config.resources.cpu,
-      allocations: config.resources.allocations,
-      databases: config.resources.database,
-      backups: config.resources.backup,
-      slots: config.resources.slots,
+      
     });
 
     // Post to Pterodactyl API
@@ -61,7 +54,7 @@ router.post("/api/register", async (req: Request, res: Response) => {
       password,
     }, {
       headers: {
-        'Authorization': `Bearer ${config.pterodactyl.apiKey}`,
+        'Authorization': `Bearer ${config.pterodactyl.api}`,
         'Content-Type': 'application/json',
         'Accept': 'application/json',
       }

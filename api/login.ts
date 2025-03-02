@@ -1,4 +1,4 @@
-import Express, { Request, Response } from "express";
+import Express from "express";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import User from "../models/User.ts";
@@ -7,9 +7,9 @@ import fs from "node:fs";
 
 const router = Express.Router();
 
-const config = toml.parse(fs.readFileSync("../config.toml", "utf-8"));
+const config = toml.parse(fs.readFileSync(process.cwd() + "/config.toml", "utf-8"));
 
-router.post("/api/login", async (req: Request, res: Response) => {
+router.post("/api/login", async (req, res) => {
   const { username, email, password } = req.body;
 
   if (!email || !username || !password) {
@@ -35,8 +35,9 @@ router.post("/api/login", async (req: Request, res: Response) => {
         message: "No user found with that credentials",
       });
     }
-     
-    if (bcrypt.verify(password, user.password)) {
+
+    const passwordMatch = await bcrypt.compare(password, user.password);
+    if (!passwordMatch) {
       return res.json({
         success: false,
         status: "failed",

@@ -2,6 +2,11 @@ import Express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
+import fs from "node:fs";
+import toml from "toml";
+
+// config 
+const config = toml.parse(fs.readFileSync("./config.toml", "utf-8"));
 
 // Router import
 import loginRoute from "./api/login.ts";
@@ -23,4 +28,4 @@ app.get("/api/", (req, res) => {
 app.use(loginRoute);
 app.use(registerRoute);
 
-app.listen(4002);
+app.listen(config.domain.port, () => console.log(`Dashboard Running in port ${config.domain.port}`));
