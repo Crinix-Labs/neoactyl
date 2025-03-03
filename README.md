@@ -56,17 +56,17 @@ Lunix Dash is in early development. Some features are incomplete or not yet avai
 
 ## 📌 Roadmap
 
-[x] Basic authentication (login/register)
+- [x] Basic authentication (login/register)
 
-[] Server creation & management
+- [ ] Server creation & management
 
-[] Shop & coins system
+- [ ] Shop & coins system
 
-[] Admin panel with user & resource management
+- [ ] Admin panel with user & resource management
 
-[] J4R, Linkvertise, and AFK rewards system
+- [ ] J4R, Linkvertise, and AFK rewards system
 
-[] UI/UX improvements
+- [ ] UI/UX improvements
 
 
 ## 💻 Installation (Coming Soon)
