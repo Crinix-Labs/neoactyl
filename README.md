@@ -1,7 +1,82 @@
-# Lunix-x-dash 
-> brother it's back the legend started it again 
 
-## contributors
-> 1. VSPCODER (@vspdecoderzz)
-> 2. Samir717le(@samir717le)
-> 3. Crater(@craterxo) will contribute
+🌙 Lunix Dash
+
+Lunix Dash is a feature-rich Pterodactyl dashboard designed to provide seamless server management, user engagement, and monetization. Built with React and Tailwind CSS, it offers a modern and efficient user experience while integrating essential server management features.
+
+> ⚠️ This project is currently under active development. Features may change, and some functionalities may not be fully implemented yet.
+
+🚀 Features (Planned)
+
+🌟 Core Features
+
+User Authentication – Login/Register with email and password
+
+Server Management – Create and manage game servers
+
+Shop System – Users can buy resources, upgrades, and more
+
+Coins System – Earn and spend virtual coins
+
+J4R (Join for Rewards) – Earn rewards by engaging with the community(s)
+
+Linkvertise Integration – Monetize traffic with ad-based earnings
+
+AFK Rewards – Users earn coins by staying active
+
+Discord OAuth – Secure login with Discord
+
+
+🛠️ Admin Panel
+
+User Management – View, edit, and delete users
+
+Resources Management – Allocate and adjust server resources
+
+Node Management – Manage Pterodactyl nodes efficiently
+
+Egg Management – Control and configure game server templates
+
+
+🏗️ Tech Stack
+
+Frontend: React, Tailwind CSS
+
+Backend: Node.js, Express
+
+Database: SQLite / MySQL
+
+Authentication: JWT & Discord OAuth
+
+Panel Integration: Pterodactyl API
+
+
+🏗️ Development Status
+
+Lunix Dash is in early development. Some features are incomplete or not yet available. Stay updated by following our progress!
+
+📌 Roadmap
+
+[x] Basic authentication (login/register)
+
+[ ] Server creation & management
+
+[ ] Shop & coins system
+
+[ ] Admin panel with user & resource management
+
+[ ] J4R, Linkvertise, and AFK rewards system
+
+[ ] UI/UX improvements
+
+
+💻 Installation (Coming Soon)
+
+Installation guides will be provided once the project reaches a stable version.
+
+🎯 Contributing
+
+We welcome contributions! Feel free to open issues or submit pull requests to help improve Lunix Dash.
+
+📜 License
+
+This project is licensed under [License]().
