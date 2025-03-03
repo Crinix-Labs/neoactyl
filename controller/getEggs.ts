@@ -4,56 +4,59 @@ import axios from "axios";
 
 const config = toml.parse(fs.readFileSync(process.cwd() + "/config.toml", "utf-8"));
 
-axios.get(config.pterodactyl.panel + "/api/application/nests", {
-    headers: {
-        "Authorization": `Bearer ${config.pterodactyl.api}`,
-        "Accept": "application/json",
-        "Content-Type": "application/json"
-    }
-}).then(res => {
-    res.data.data.forEach(element => {
-        axios.get(config.pterodactyl.panel + `/api/application/nests/${element.attributes.id}/eggs?include=variables`, {
+async function fetchEggs() {
+    try {
+        // Fetch all nests
+        const nestsRes = await axios.get(`${config.pterodactyl.panel}/api/application/nests`, {
             headers: {
                 "Authorization": `Bearer ${config.pterodactyl.api}`,
                 "Accept": "application/json",
                 "Content-Type": "application/json"
             }
-        }).then( res => {
-            res.data.data.forEach(egg => {
-                //delete egg.attributes.startup;
-                delete egg.attributes.config;
-                delete egg.attributes.script;
-                delete egg.attributes.docker_images;
-                delete egg.attributes.uid;
-                delete egg.attributes.nest;
-                delete egg.attributes.author;
-                delete egg.attributes.updated_at;
-                delete egg.attributes.created_at;
-                egg.attributes.relationships.variables.data.forEach(variable => {
-                    const indexit = variable.attributes;
+        });
 
-                    delete indexit.id;
-                    delete indexit.egg_id;
-                    delete indexit.name;
-                    delete indexit.description;
-                    delete indexit.user_viewable;
-                    delete indexit.user_editable;
-                    delete indexit.rules;
-                    delete indexit.created_at;
-                    delete indexit.updated_at;
+        const nests = nestsRes.data.data;
 
-                    console.log(indexit)
+        // Fetch eggs for each nest in parallel
+        await Promise.all(nests.map(async (nest) => {
+            try {
+                const eggsRes = await axios.get(`${config.pterodactyl.panel}/api/application/nests/${nest.attributes.id}/eggs?include=variables`, {
+                    headers: {
+                        "Authorization": `Bearer ${config.pterodactyl.api}`,
+                        "Accept": "application/json",
+                        "Content-Type": "application/json"
+                    }
                 });
-            })
-        })
-    });
-});
 
-/*
-axios.get(config.pterodactyl.panel + "/api/application/nests/1/eggs", {
-    headers: {
-        "Authorization": `Bearer ${config.pterodactyl.api}`,
-        "Accept": "application/json",
-        "Content-Type": "application/json"
+                const eggs = eggsRes.data.data;
+
+                // Process each egg
+                eggs.forEach(egg => {
+                    const attributes = egg.attributes;
+
+                    // Remove unnecessary properties
+                    ["config", "script", "docker_images", "uid", "nest", "author", "updated_at", "created_at"]
+                        .forEach(prop => delete attributes[prop]);
+
+                    // Process variables
+                    attributes.relationships.variables.data.forEach(variable => {
+                        const indexit = variable.attributes;
+
+                        ["id", "egg_id", "name", "description", "user_viewable", "user_editable", "rules", "created_at", "updated_at"]
+                            .forEach(prop => delete indexit[prop]);
+
+                        console.log(indexit);
+                    });
+                });
+
+            } catch (error) {
+                console.error(`Error fetching eggs for nest ${nest.attributes.id}:`, error.message);
+            }
+        }));
+
+    } catch (error) {
+        console.error("Error fetching nests:", error.message);
     }
-})*/
+}
+
+fetchEggs();
