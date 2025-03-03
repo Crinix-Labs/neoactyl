@@ -1,13 +1,13 @@
 
-🌙 Lunix Dash
+# 🌙 Lunix Dash
 
 Lunix Dash is a feature-rich Pterodactyl dashboard designed to provide seamless server management, user engagement, and monetization. Built with React and Tailwind CSS, it offers a modern and efficient user experience while integrating essential server management features.
 
 > ⚠️ This project is currently under active development. Features may change, and some functionalities may not be fully implemented yet.
 
-🚀 Features (Planned)
+## 🚀 Features (Planned)
 
-🌟 Core Features
+> 🌟 Core Features
 
 User Authentication – Login/Register with email and password
 
@@ -26,7 +26,7 @@ AFK Rewards – Users earn coins by staying active
 Discord OAuth – Secure login with Discord
 
 
-🛠️ Admin Panel
+## 🛠️ Admin Panel
 
 User Management – View, edit, and delete users
 
@@ -37,7 +37,7 @@ Node Management – Manage Pterodactyl nodes efficiently
 Egg Management – Control and configure game server templates
 
 
-🏗️ Tech Stack
+## 🏗️ Tech Stack
 
 Frontend: React, Tailwind CSS
 
@@ -50,33 +50,33 @@ Authentication: JWT & Discord OAuth
 Panel Integration: Pterodactyl API
 
 
-🏗️ Development Status
+## 🏗️ Development Status
 
 Lunix Dash is in early development. Some features are incomplete or not yet available. Stay updated by following our progress!
 
-📌 Roadmap
+## 📌 Roadmap
 
 [x] Basic authentication (login/register)
 
-[ ] Server creation & management
+[] Server creation & management
 
-[ ] Shop & coins system
+[] Shop & coins system
 
-[ ] Admin panel with user & resource management
+[] Admin panel with user & resource management
 
-[ ] J4R, Linkvertise, and AFK rewards system
+[] J4R, Linkvertise, and AFK rewards system
 
-[ ] UI/UX improvements
+[] UI/UX improvements
 
 
-💻 Installation (Coming Soon)
+## 💻 Installation (Coming Soon)
 
 Installation guides will be provided once the project reaches a stable version.
 
-🎯 Contributing
+## 🎯 Contributing
 
 We welcome contributions! Feel free to open issues or submit pull requests to help improve Lunix Dash.
 
-📜 License
+## 📜 License
 
-This project is licensed under [License]().
+This project is licensed under [License](https://raw.githubusercontent.com/Crinix-Labs/Lunix-Dash/refs/heads/main/LICENSE).
