@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import toml from "toml";
 import axios from "axios";
+import path from "path";
 
 const config = toml.parse(fs.readFileSync(process.cwd() + "/config.toml", "utf-8"));
 
@@ -16,6 +17,12 @@ async function fetchEggs() {
         });
 
         const nests = nestsRes.data.data;
+
+        // Ensure the eggs directory exists
+        const eggsDir = path.join(process.cwd(), "eggs");
+        if (!fs.existsSync(eggsDir)) {
+            fs.mkdirSync(eggsDir);
+        }
 
         // Fetch eggs for each nest in parallel
         await Promise.all(nests.map(async (nest) => {
@@ -51,7 +58,9 @@ async function fetchEggs() {
                     delete attributes.relationships;
                     attributes.enabled = true;
                     attributes.variables = variables;
-                    fs.appendFileSync(`${process.cwd()}/eggs/${attributes.name.replace(/\s+/g, "_")}.json`, JSON.stringify(attributes, null, 4));
+
+                    const eggFilePath = path.join(eggsDir, `${attributes.name.replace(/\s+/g, "_")}.json`);
+                    fs.writeFileSync(eggFilePath, JSON.stringify(attributes, null, 4));
                     console.log(`Egg ${attributes.name} has been saved!`);
                 });
 
@@ -64,6 +73,5 @@ async function fetchEggs() {
         console.error("Error fetching nests:", error.message);
     }
 }
-
 
 export default fetchEggs;

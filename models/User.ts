@@ -56,6 +56,10 @@ const User = sequelize.define("user", {
     type: DataTypes.INTEGER,
     defaultValue: config.Resources.slots,
   },
+  servers: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
+  },
 });
 
 // Synchronize the model with the database
