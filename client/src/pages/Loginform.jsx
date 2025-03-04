@@ -1,5 +1,5 @@
 import React from "react";
-import Themecontroller from "../components/Themecontroller";
+import Themecontroller from "./components/Themecontroller";
 
 const Loginform = () => {
   return (
