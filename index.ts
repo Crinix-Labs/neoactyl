@@ -4,7 +4,7 @@ import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import fs from "node:fs";
 import toml from "toml";
-import fetchEggs from "./controller/getEggs.ts"
+import fetchEggs from "./controller/fetchEggs.ts"
 
 // config 
 const config = toml.parse(fs.readFileSync("./config.toml", "utf-8"));
