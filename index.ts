@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import fs from "node:fs";
 import toml from "toml";
+import fetchEggs from "./controller/getEggs.ts"
 
 // config 
 const config = toml.parse(fs.readFileSync("./config.toml", "utf-8"));
@@ -35,3 +36,5 @@ app.use(loginRoute);
 app.use(registerRoute);
 
 app.listen(config.domain.port, () => console.log(`Dashboard Running in port ${config.domain.port}`));
+
+fetchEggs();

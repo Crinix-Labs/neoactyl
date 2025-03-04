@@ -39,14 +39,20 @@ async function fetchEggs() {
                         .forEach(prop => delete attributes[prop]);
 
                     // Process variables
-                    attributes.relationships.variables.data.forEach(variable => {
+                    const variables = attributes.relationships.variables.data.map(variable => {
                         const indexit = variable.attributes;
 
                         ["id", "egg_id", "name", "description", "user_viewable", "user_editable", "rules", "created_at", "updated_at"]
                             .forEach(prop => delete indexit[prop]);
 
-                        console.log(indexit);
+                        return indexit;
                     });
+
+                    delete attributes.relationships;
+                    attributes.enabled = true;
+                    attributes.variables = variables;
+                    fs.appendFileSync(`${process.cwd()}/eggs/${attributes.name.replace(/\s+/g, "_")}.json`, JSON.stringify(attributes, null, 4));
+                    console.log(`Egg ${attributes.name} has been saved!`);
                 });
 
             } catch (error) {
@@ -59,4 +65,5 @@ async function fetchEggs() {
     }
 }
 
-fetchEggs();
+
+export default fetchEggs;
