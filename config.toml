@@ -29,7 +29,7 @@ database = "lunix-dash"
 # Url of pterodactyl panel to dashboard communicate with 
 panel = "https://panel.crinix.cloud"
 # Application key of pterodactyl panel
-api = "ptla_NHU8dHkn9pYRV2gLiJiyURdEpAotdxSLfBBdChjsyHY"
+api = "000"
 
 [Resources]
 # The resources that will be allocated to the user when they create account
