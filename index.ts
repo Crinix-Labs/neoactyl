@@ -14,6 +14,7 @@ import loginRoute from "./api/login.ts";
 import registerRoute from "./api/register.ts";
 import createServerRoute from "./api/createServer.ts";
 import deleteServerRoute from "./api/deleteServer.ts"
+import configRoute from "./api/config.ts";
 
 // app
 const app = Express();
@@ -38,6 +39,7 @@ app.use(loginRoute);
 app.use(registerRoute);
 app.use(createServerRoute);
 app.use(deleteServerRoute);
+app.use(configRoute);
 
 app.listen(config.domain.port, () => console.log(`Dashboard Running in port ${config.domain.port}`));
 

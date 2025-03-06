@@ -60,8 +60,14 @@ async function fetchEggs() {
                     attributes.variables = variables;
 
                     const eggFilePath = path.join(eggsDir, `${attributes.name.replace(/\s+/g, "_")}.json`);
-                    fs.writeFileSync(eggFilePath, JSON.stringify(attributes, null, 4));
-                    console.log(`Egg ${attributes.name} has been saved!`);
+
+                    // Check if the egg file already exists
+                    if (!fs.existsSync(eggFilePath)) {
+                        fs.writeFileSync(eggFilePath, JSON.stringify(attributes, null, 4));
+                        console.log(`Egg ${attributes.name} has been saved!`);
+                    } else {
+                        console.log(`Egg ${attributes.name} already exists, skipping...`);
+                    }
                 });
 
             } catch (error) {

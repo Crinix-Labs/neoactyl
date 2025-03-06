@@ -42,7 +42,6 @@ router.post("/api/register", async (req, res) => {
       username,
       email,
       password: hashedPassword,
-      
     });
 
     // Post to Pterodactyl API
@@ -59,7 +58,7 @@ router.post("/api/register", async (req, res) => {
         'Accept': 'application/json',
       }
     });
-
+    delete newUser.password;
     return res.json({ success: true, message: "User registered successfully", user: newUser });
   } catch (error) {
     console.error("Error during registration:", error);
@@ -67,6 +66,7 @@ router.post("/api/register", async (req, res) => {
       success: false,
       status: "failed",
       message: "Internal server error",
+      error,
     });
   }
 });

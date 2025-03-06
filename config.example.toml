@@ -40,3 +40,8 @@ allocations = 1
 database = 1
 backups = 1
 slots = 1
+
+[renewal]
+# The renewal settings 
+enabled = true
+period = 7 # the period of renewal in days
