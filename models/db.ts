@@ -18,7 +18,7 @@ const sequelize = new Sequelize({
 });
 
 // Test the connection
-sequelize.authenticate()
+sequelize.authenticate({ force: true})
   .then(() => {
     console.log('Connection has been established successfully.');
   })

@@ -5,6 +5,7 @@ import fs from "node:fs";
 import path from "node:path";
 import getEggs from "../controller/getEggs.ts";
 import User from "../models/User.ts";
+import Server from "../models/Server.ts";
 
 const router = Express.Router();
 
@@ -115,6 +116,13 @@ router.post("/api/server", async (req, res) => {
         usert.cpu -= cpu;
         usert.servers += 1;
         await usert.save();
+
+        // Create a new server record in the database
+        await Server.create({
+            id: body.name,
+            lastRenewal: new Date(),
+            nextRenewal: new Date(Date.now() + config.renewal.period * 24 * 60 * 60 * 1000), // Assuming period is in days
+        });
 
         return res.json({ status: "success", message: "Server created successfully" });
     } catch (error: any) {

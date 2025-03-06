@@ -4,16 +4,17 @@ import toml from "toml";
 import fs from "node:fs";
 import path from "node:path";
 import User from "../models/User.ts";
+import Server from "../models/Server.ts";
 
 const router = Express.Router();
 
 const configPath = path.resolve(process.cwd(), "config.toml");
 const config = toml.parse(fs.readFileSync(configPath, "utf-8"));
 
-router.delete("/api/server/:serverId", async (req, res) => {
-    const { serverId } = req.params;
-    const { username } = req.body;
-
+router.delete("/api/server/", async (req, res) => {
+    const serverId = req.body.serverId;
+    const username = req.body.username;
+    console.log(req.body, req.params)
     if (!serverId || !username) {
         return res.status(400).json({ status: "failed", message: "Server ID and username are required" });
     }
@@ -50,6 +51,9 @@ router.delete("/api/server/:serverId", async (req, res) => {
         usert.cpu += server.limits.cpu;
         usert.servers -= 1;
         await usert.save();
+
+        // Delete the server record from the database
+        await Server.destroy({ where: { id: serverId } });
 
         return res.json({ status: "success", message: "Server deleted successfully" });
     } catch (error: any) {
