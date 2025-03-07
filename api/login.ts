@@ -4,10 +4,13 @@ import bcrypt from "bcrypt";
 import User from "../models/User.ts";
 import toml from "toml";
 import fs from "node:fs";
+import axios from "axios";
 
 const router = Express.Router();
 
-const config = toml.parse(fs.readFileSync(process.cwd() + "/config.toml", "utf-8"));
+const config = toml.parse(
+  fs.readFileSync(process.cwd() + "/config.toml", "utf-8")
+);
 
 router.post("/api/login", async (req, res) => {
   const { username, email, password } = req.body;
@@ -32,10 +35,11 @@ router.post("/api/login", async (req, res) => {
       return res.json({
         success: false,
         status: "failed",
-        message: "No user found with that credentials",
+        message: "No user found with those credentials",
       });
     }
 
+    // Compare password
     const passwordMatch = await bcrypt.compare(password, user.password);
     if (!passwordMatch) {
       return res.json({
@@ -45,9 +49,29 @@ router.post("/api/login", async (req, res) => {
       });
     }
 
+    // Fetch user details from Pterodactyl API
+    const ptrlUserResponse = await axios.get(
+      `${config.pterodactyl.panel}/api/application/users/${user.id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${config.pterodactyl.api}`,
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      }
+    );
+
+    const ptrlUser = ptrlUserResponse.data.attributes;
+
     // Generate token with environment secret key
     const token = jwt.sign(
-      { id: user.id, username: user.username, email: user.email },
+      {
+        id: user.id,
+        username: user.username,
+        email: user.email,
+
+        admin: ptrlUser.root_admin, // true if user is an admin
+      },
       config.general.jwtSecret,
       { expiresIn: "1h" }
     );
@@ -60,7 +84,16 @@ router.post("/api/login", async (req, res) => {
       maxAge: 3600000, // 1 hour
     });
 
-    return res.json({ success: true, message: "Login successful" });
+    return res.json({
+      success: true,
+      message: "Login successful",
+      user: {
+        id: user.id,
+        username: user.username,
+        email: user.email,
+        admin: ptrlUser.root_admin, // true if user is an admin
+      },
+    });
   } catch (error) {
     console.error("Error during login:", error);
     return res.status(500).json({
