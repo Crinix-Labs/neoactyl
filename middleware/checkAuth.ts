@@ -7,7 +7,7 @@ const jwtSecret = config.general.jwtSecret;
 const checkAuth = (req, res, next) => {
   try {
     // Get token from cookie
-    const token = req.cookies?.token;
+    const token = req.cookies?.authToken;
     if (!token) {
       return res.status(401).json({ message: "Unauthorized" });
     }
