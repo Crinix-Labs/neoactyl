@@ -1,1 +1,9 @@
 i.sh
+node_modules
+config.toml
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
