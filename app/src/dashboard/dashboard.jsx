@@ -14,7 +14,7 @@ const Dashboard = () => {
         <div className="flex flex-row justify-start items-center px-4 bg-[#202023] h-[140px] border-b border-zinc-700">
           <div className="flex justify-center items-center gap-4 border-r border-zinc-700 h-full pr-[100px]">
             <div className="flex flex-col items-start justify-center pl-4">
-              <h1 className="flex flex-row items-center gap-2 text-zinc-400 text-start text-md font-opensans font-light"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cpu"><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2"/><path d="M15 20v2"/><path d="M2 15h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 9h2"/><path d="M9 2v2"/><path d="M9 20v2"/></svg> Available Memory</h1>
+              <h1 className="flex flex-row items-center gap-2 text-zinc-400 text-start text-md font-opensans font-light"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-memory-stick"><path d="M6 19v-3"/><path d="M10 19v-3"/><path d="M14 19v-3"/><path d="M18 19v-3"/><path d="M8 11V9"/><path d="M16 11V9"/><path d="M12 11V9"/><path d="M2 15h20"/><path d="M2 7a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v1.1a2 2 0 0 0 0 3.837V17a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-5.1a2 2 0 0 0 0-3.837Z"/></svg> Available Memory</h1>
               <h2 className="text-white text-center text-[50px] font-opensans font-light">0.00 GB</h2>
             </div>
           </div>
@@ -26,7 +26,7 @@ const Dashboard = () => {
           </div>
           <div className="flex justify-center items-center gap-4 h-full">
             <div className="flex flex-col items-start justify-center pl-8">
-              <h1 className="flex flex-row items-center gap-2 text-zinc-400 text-start text-md font-opensans font-light"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-memory-stick"><path d="M6 19v-3"/><path d="M10 19v-3"/><path d="M14 19v-3"/><path d="M18 19v-3"/><path d="M8 11V9"/><path d="M16 11V9"/><path d="M12 11V9"/><path d="M2 15h20"/><path d="M2 7a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v1.1a2 2 0 0 0 0 3.837V17a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-5.1a2 2 0 0 0 0-3.837Z"/></svg> Available CPU</h1>
+              <h1 className="flex flex-row items-center gap-2 text-zinc-400 text-start text-md font-opensans font-light"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cpu"><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2"/><path d="M15 20v2"/><path d="M2 15h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 9h2"/><path d="M9 2v2"/><path d="M9 20v2"/></svg> Available CPU</h1>
               <h2 className="text-white text-center text-[50px] font-opensans font-light">0 Cores</h2>
             </div>
           </div>
