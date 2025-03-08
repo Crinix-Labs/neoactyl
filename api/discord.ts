@@ -139,7 +139,7 @@ router.get(config.discord.callback, async (req, res) => {
 });
 
 // Logout route
-router.get("/logout", (req, res) => {
+router.get("/api/logout", (req, res) => {
   res.clearCookie("authToken");
   req.session.destroy(() => res.redirect("/"));
 });

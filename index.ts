@@ -22,6 +22,7 @@ import eggsRoute from "./api/eggs.ts";
 import discord from "./api/discord.ts";
 import nodeRoute from "./api/nodes.ts";
 import serverRoute from "./api/server.ts";
+import meRoute from "./api/meRoute.ts";
 
 // app
 const app = Express();
@@ -52,6 +53,7 @@ app.use(eggsRoute);
 app.use(discord);
 app.use(nodeRoute);
 app.use(serverRoute);
+app.use(meRoute);
 
 app.listen(config.domain.port, () =>
   console.log(`Dashboard Running in port ${config.domain.port}`)
