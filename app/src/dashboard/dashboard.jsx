@@ -3,12 +3,13 @@ import Sidebar from '../components/sidebar';
 import Topbar from '../components/topbar';
 import { useNavigate } from 'react-router-dom';
 import WelcomeCard from '../components/welcomecard';
+import Footer from '../components/footer';
 
 const Dashboard = () => {
   return (
     <div className="flex">
       <Sidebar />
-      <div className="flex-1">
+      <div className="flex-1 flex flex-col">
         <Topbar />
         <WelcomeCard />
         <div className="flex flex-row justify-start items-center px-4 bg-[#202023] h-[140px] border-b border-zinc-700">
@@ -42,7 +43,7 @@ const Dashboard = () => {
               <h1 className="text-zinc-100 text-start text-[16px] font-opensans font-medium">Actions</h1>
           </div>
         </div>
-        <div className="flex flex-col justify-center items-center px-2 pt-6">
+        <div className="flex flex-col justify-center items-center px-2 pt-6 flex-1">
           <div className="flex flex-row items-start justify-between pl-4 pt-2">
             <p className="flex flex-row items-center gap-2 text-zinc-100 text-start text-[16px] font-opensans font-light"> 
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkle"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
@@ -50,6 +51,7 @@ const Dashboard = () => {
               </p>
           </div>
         </div>
+        <Footer />
       </div>
     </div>
   );
