@@ -1,5 +1,5 @@
 
-# 🌙 Lunix Dash
+# 🌙 Neoactyl
 
 Lunix Dash is a feature-rich Pterodactyl dashboard designed to provide seamless server management, user engagement, and monetization. Built with React and Tailwind CSS, it offers a modern and efficient user experience while integrating essential server management features.
 
