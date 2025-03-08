@@ -23,7 +23,7 @@ const WelcomeCard = () => {
         </div>
         <div className="flex flex-row items-start justify-between">
             <h1 className="text-white text-2xl font-normal font-opensans pt-2">Welcome back, User <br /> <span className="text-zinc-400 text-sm font-opensans">What would you like to do today?</span></h1>
-            <a href="/dashboard/create-server" className="flex flex-row items-center gap-2 bg-blue-700 hover:bg-blue-700/80 transition-all duration-300 text-white px-4 py-2 rounded-md">
+            <a href="/dashboard/create-server" className="flex flex-row items-center gap-2 bg-blue-600 hover:bg-blue-700 transition-all duration-300 text-white px-4 py-2 rounded-md">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-plus"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
                 Create Server
             </a>
