@@ -12,8 +12,8 @@ const Register = () => {
             <div className="flex flex-col items-center justify-center min-h-screen">
             <Title />
                 <div className="px-6 py-4 rounded-lg shadow-md w-96 border-2 border-zinc-800 border-dashed">
-                    <h1 className="text-white text-center text-2xl mb-2 font-bold">Register</h1>
-                    <p className="text-white text-center text-sm mb-4">Fill the form below to create an account</p>
+                    <h1 className="text-white text-center text-2xl mb-2 font-medium font-opensans">Register</h1>
+                    <p className="text-white text-center text-sm mb-4 font-opensans">Fill the form below to create an account</p>
                     <form>
                     <p className="text-white">Username</p>
                     <label className="input validator bg-zinc-800 mb-4 rounded-md w-full">
