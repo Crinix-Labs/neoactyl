@@ -17,6 +17,7 @@ import deleteServerRoute from "./api/deleteServer.ts";
 import configRoute from "./api/config.ts";
 import renewRoute from "./api/renew.ts"; // Import the renew route
 import eggsRoute from "./api/eggs.ts";
+import discord from "./api/discord.ts";
 
 // app
 const app = Express();
@@ -44,6 +45,7 @@ app.use(deleteServerRoute);
 app.use(configRoute);
 app.use(renewRoute); // Use the renew route
 app.use(eggsRoute);
+app.use(discord);
 
 app.listen(config.domain.port, () =>
   console.log(`Dashboard Running in port ${config.domain.port}`)

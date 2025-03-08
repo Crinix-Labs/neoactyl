@@ -10,13 +10,13 @@ const config = toml.parse(
 
 const router = express.Router();
 
-router.get("/api/config", checkAuth, (req, res) => {
-  if (!req.user.admin) {
+router.get("/api/config", (req, res) => {
+  /* if (!req.user.admin) {
     return res.json({ success: false, message: "access denied, not a admin" });
-  }
+  }*/
   delete config.general.jwtSecret;
   delete config.database;
-  delete config.discord.ClientSecret;
+  delete config.discord.clientSecret;
   delete config.pterodactyl.api;
   res.json(config);
 });

@@ -72,12 +72,10 @@ router.post("/api/server", checkAuth, async (req, res) => {
         .json({ status: "failed", message: "Insufficient RAM available" });
     }
     if (usert.disk < disk) {
-      return res
-        .status(400)
-        .json({
-          status: "failed",
-          message: "Insufficient disk space available",
-        });
+      return res.status(400).json({
+        status: "failed",
+        message: "Insufficient disk space available",
+      });
     }
     if (usert.cpu < cpu) {
       return res
@@ -131,7 +129,7 @@ router.post("/api/server", checkAuth, async (req, res) => {
       body.environment[variable.env_variable] = variable.default_value;
     });
 
-    await axios.post(
+    const serverRes = await axios.post(
       `${config.pterodactyl.panel}/api/application/servers`,
       body,
       {
@@ -152,7 +150,7 @@ router.post("/api/server", checkAuth, async (req, res) => {
 
     // Create a new server record in the database
     await Server.create({
-      id: body.name,
+      id: serverRes.attributes.id,
       lastRenewal: new Date(),
       nextRenewal: new Date(
         Date.now() + config.renewal.period * 24 * 60 * 60 * 1000
