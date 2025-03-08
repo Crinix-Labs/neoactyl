@@ -91,6 +91,14 @@ const startFrontend = () => {
   });
 };
 
+// Database initialization logging
+const logDatabaseStatus = () => {
+  console.log('\x1b[36m%s\x1b[0m', '📦 Database:');
+  console.log('\x1b[36m%s\x1b[0m', '━━━━━━━━━━━');
+  console.log('\x1b[32m%s\x1b[0m', '✓ SQLite initialized successfully');
+  console.log('\x1b[32m%s\x1b[0m', '✓ Connection established\n');
+};
+
 // Start the backend server
 app.listen(BACKEND_PORT, config.domain.listen, () => {
   console.clear();
@@ -98,6 +106,9 @@ app.listen(BACKEND_PORT, config.domain.listen, () => {
   console.log('\x1b[32m%s\x1b[0m', '🚀 Dashboard Backend Started Successfully!');
   console.log('\x1b[33m%s\x1b[0m', `📡 API Running on ${config.domain.listen}:${BACKEND_PORT}`);
   console.log('\x1b[34m%s\x1b[0m', `⚡ Starting frontend on ${config.domain.listen}:${config.domain.port}...\n`);
+  
+  // Log database status
+  logDatabaseStatus();
   
   setTimeout(startFrontend, 1000);
 });
@@ -118,9 +129,3 @@ fetchEggs().catch(error => {
     console.log('\x1b[31m%s\x1b[0m', '❌ Error fetching eggs:', error.message);
   }
 });
-
-// Database connection messages
-console.log('\x1b[36m%s\x1b[0m', '📦 Database:');
-console.log('\x1b[36m%s\x1b[0m', '━━━━━━━━━━━');
-console.log('\x1b[32m%s\x1b[0m', '✓ SQLite initialized successfully');
-console.log('\x1b[32m%s\x1b[0m', '✓ Connection established\n');
