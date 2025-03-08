@@ -33,6 +33,7 @@
     "@types/express": "^5.0.0",
     "@types/node": "^22.13.9",
     "@types/sequelize": "^4.28.20",
+    "daisyui": "^5.0.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.2"
   }
