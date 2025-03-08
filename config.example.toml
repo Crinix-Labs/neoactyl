@@ -1,0 +1,47 @@
+[general]
+name = "Lunix-Dash"
+logo = ""
+description = ""
+jwtSecret = "lunix-dash-029939303094949949930298" # Secret key for JWT change it
+
+[domain]
+listen = "localhost"
+port = 5000 # the port to listen on allowed value{ integer(5), string(auto_ptrl) : for pterodactyl auto}
+
+[discord]
+clientId = "null"
+ClientSecret = "null"
+callback = "/api/auth/discord" # /api can't be removed or it will not work
+# Discord auth not available 
+
+[database]
+type = "sqlite"
+filename = "data.sqlite"
+
+[database.mysql]
+
+host = "localhost:3306"
+username = "root"
+password = ""
+database = "lunix-dash"
+
+[pterodactyl]
+# Url of pterodactyl panel to dashboard communicate with 
+panel = "https://panel.crinix.cloud"
+# Application key of pterodactyl panel
+api = "ptla_000000000000000000000000000000000000000000000000"
+
+[Resources]
+# The resources that will be allocated to the user when they create account
+ram = 2048
+cpu = 100
+disk = 10240
+allocations = 1
+database = 1
+backups = 1
+slots = 1
+
+[renewal]
+# The renewal settings 
+enabled = true
+period = 7 # the period of renewal in days

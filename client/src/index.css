@@ -1,6 +1,0 @@
-@import "tailwindcss";
-@plugin "daisyui" {
-themes: light --default, dark , aqua, cupcake, dim, valentine, lemonade, night, autumn, caramellatte, silk;
-  }
-
-
