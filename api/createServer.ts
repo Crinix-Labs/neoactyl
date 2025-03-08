@@ -150,7 +150,7 @@ router.post("/api/server", checkAuth, async (req, res) => {
 
     // Create a new server record in the database
     await Server.create({
-      id: serverRes.attributes.id,
+      id: serverRes.data.attributes.id,
       lastRenewal: new Date(),
       nextRenewal: new Date(
         Date.now() + config.renewal.period * 24 * 60 * 60 * 1000
