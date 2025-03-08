@@ -2,13 +2,13 @@ import Express from "express";
 import getEggs from "../controller/getEggs.ts";
 import fs from "node:fs/promises";
 import path from "node:path";
-import checkAuth from "../middleware/checkAuth.ts"
+import checkAuth from "../middleware/checkAuth.ts";
 
 const router = Express.Router();
-const EGGS_DIR = path.join(process.cwd(), "eggs");
+const EGGS_DIR = path.join(process.cwd(), "nodes");
 
 // Get all eggs
-router.get("/api/eggs", async (req, res) => {
+router.get("/api/nodes", async (req, res) => {
   try {
     const eggs = await getEggs(EGGS_DIR);
     res.json(eggs);
@@ -18,12 +18,17 @@ router.get("/api/eggs", async (req, res) => {
 });
 
 // Dynamically find and update 'enabled' property of an egg by ID
-router.patch("/api/eggs/:id", checkAuth, async (req, res) => {
+router.patch("/api/nodes/:id", checkAuth, async (req, res) => {
   const { id } = req.params;
   const { enabled } = req.body; // Expecting { "enabled": true } or { "enabled": false }
-  
-  if(!req.user.admin) {
-    return res.status(401).json({ success: "deny", message: "The user doesn't have access to this."})
+
+  if (!req.user.admin) {
+    return res
+      .status(401)
+      .json({
+        success: "deny",
+        message: "The user doesn't have access to this.",
+      });
   }
   if (typeof enabled !== "boolean") {
     return res

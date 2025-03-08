@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import fs from "node:fs";
 import toml from "toml";
 import fetchEggs from "./controller/fetchEggs.ts";
+import fetchNodes from "./controller/fetchNodes.ts";
 
 // config
 const config = toml.parse(fs.readFileSync("./config.toml", "utf-8"));
@@ -18,6 +19,7 @@ import configRoute from "./api/config.ts";
 import renewRoute from "./api/renew.ts"; // Import the renew route
 import eggsRoute from "./api/eggs.ts";
 import discord from "./api/discord.ts";
+import nodeRoute from "./api/nodes.ts";
 
 // app
 const app = Express();
@@ -46,9 +48,11 @@ app.use(configRoute);
 app.use(renewRoute); // Use the renew route
 app.use(eggsRoute);
 app.use(discord);
+app.use(nodeRoute);
 
 app.listen(config.domain.port, () =>
   console.log(`Dashboard Running in port ${config.domain.port}`)
 );
 
 fetchEggs();
+fetchNodes();
