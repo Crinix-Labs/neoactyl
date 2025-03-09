@@ -152,9 +152,6 @@ router.post("/api/server", checkAuth, async (req, res) => {
     await Server.create({
       id: serverRes.data.attributes.id,
       lastRenewal: new Date(),
-      nextRenewal: new Date(
-        Date.now() + config.renewal.period * 24 * 60 * 60 * 1000
-      ), // Assuming period is in days
     });
 
     return res.json({

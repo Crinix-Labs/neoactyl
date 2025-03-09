@@ -13,9 +13,9 @@ const config = toml.parse(
 );
 
 router.post("/api/login", async (req, res) => {
-  const { username, email, password } = req.body;
+  const { username, password } = req.body;
 
-  if (!email || !username || !password) {
+  if (!username || !password) {
     return res.json({
       success: false,
       status: "failed",
@@ -26,7 +26,6 @@ router.post("/api/login", async (req, res) => {
   try {
     const user = await User.findOne({
       where: {
-        email,
         username,
       },
     });
