@@ -23,6 +23,7 @@ import discord from "./api/discord.ts";
 import nodeRoute from "./api/nodes.ts";
 import serverRoute from "./api/server.ts";
 import meRoute from "./api/meRoute.ts";
+import { ASCII_ART } from "./ascii.ts";
 
 // app
 const app = Express();
@@ -55,14 +56,54 @@ app.use(nodeRoute);
 app.use(serverRoute);
 app.use(meRoute);
 
-app.listen(config.domain.port, () =>
-  console.log(`Dashboard Running in port ${config.domain.port}`)
-);
+app.listen(config.domain.port, config.domain.listen, () => {
+  console.clear();
+  console.log("\x1b[36m%s\x1b[0m", ASCII_ART);
+  console.log(
+    "\x1b[32m%s\x1b[0m",
+    "🚀 Dashboard Backend Started Successfully!"
+  );
+});
 
-(async () => {
-  await db.sync({ alter: true }); // Ensure tables are created
-  console.log("Database synced!");
-})();
-
-fetchEggs();
-fetchNodes();
+fetchEggs().catch((error) => {
+  if (error.response?.status === 401) {
+    console.log("\n");
+    console.log("\x1b[33m%s\x1b[0m", "⚠️  Pterodactyl API Connection Error");
+    console.log("\x1b[33m%s\x1b[0m", "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+    console.log("\x1b[37m%s\x1b[0m", "1. Go to your Pterodactyl panel");
+    console.log("\x1b[37m%s\x1b[0m", "2. Navigate to: Admin > Application API");
+    console.log("\x1b[37m%s\x1b[0m", "3. Create a new API key");
+    console.log(
+      "\x1b[37m%s\x1b[0m",
+      "4. Update your config.toml with the new key"
+    );
+    console.log(
+      "\x1b[37m%s\x1b[0m",
+      '   Location: [pterodactyl] > api = "your_api_key"'
+    );
+    console.log("\x1b[33m%s\x1b[0m", "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
+  } else {
+    console.log("\x1b[31m%s\x1b[0m", "❌ Error fetching eggs:", error.message);
+  }
+});
+fetchNodes().catch((error) => {
+  if (error.response?.status === 401) {
+    console.log("\n");
+    console.log("\x1b[33m%s\x1b[0m", "⚠️  Pterodactyl API Connection Error");
+    console.log("\x1b[33m%s\x1b[0m", "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+    console.log("\x1b[37m%s\x1b[0m", "1. Go to your Pterodactyl panel");
+    console.log("\x1b[37m%s\x1b[0m", "2. Navigate to: Admin > Application API");
+    console.log("\x1b[37m%s\x1b[0m", "3. Create a new API key");
+    console.log(
+      "\x1b[37m%s\x1b[0m",
+      "4. Update your config.toml with the new key"
+    );
+    console.log(
+      "\x1b[37m%s\x1b[0m",
+      '   Location: [pterodactyl] > api = "your_api_key"'
+    );
+    console.log("\x1b[33m%s\x1b[0m", "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
+  } else {
+    console.log("\x1b[31m%s\x1b[0m", "❌ Error fetching Nodes:", error.message);
+  }
+});

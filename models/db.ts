@@ -27,7 +27,21 @@ const sequelize = new Sequelize(
 // Test the connection
 sequelize
   .authenticate()
-  .then(() => console.log("Database connected successfully."))
+  .then(() => {
+    console.log("\x1b[36m%s\x1b[0m", "📦 Database:");
+    console.log("\x1b[36m%s\x1b[0m", "━━━━━━━━━━━");
+    console.log("\x1b[32m%s\x1b[0m", "✓ SQLite initialized successfully");
+    console.log("\x1b[32m%s\x1b[0m", "✓ Connection established\n");
+    /*(async () => {
+      await db.sync({ alter: true }); // Ensure tables are created
+      
+    })();*/
+  })
   .catch((err) => console.error("Database connection error:", err));
+
+(async () => {
+  await sequelize.sync({ alter: true });
+  console.log("\x1b[32m%s\x1b[0m", "✓ Database synced\n");
+})();
 
 export default sequelize;

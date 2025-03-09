@@ -64,23 +64,52 @@ router.post("/api/server", checkAuth, async (req, res) => {
     if (usert.servers >= usert.slots) {
       return res
         .status(400)
-        .json({ status: "failed", message: "Server Limit reached!" });
+        .json({
+          status: "failed",
+          success: false,
+          message: "Server Limit reached!",
+        });
     }
     if (usert.ram < ram) {
       return res
         .status(400)
-        .json({ status: "failed", message: "Insufficient RAM available" });
+        .json({
+          status: "failed",
+          success: false,
+          message: "Insufficient RAM available",
+        });
     }
     if (usert.disk < disk) {
       return res.status(400).json({
         status: "failed",
+        success: false,
         message: "Insufficient disk space available",
       });
     }
     if (usert.cpu < cpu) {
       return res
         .status(400)
-        .json({ status: "failed", message: "Insufficient CPU available" });
+        .json({
+          status: "failed",
+          success: false,
+          message: "Insufficient CPU available",
+        });
+    }
+    if (usert.allocations < allocation) {
+      return res.status(400).json({
+        status: "failed",
+        success: false,
+        message: "Insufficient Allocation available",
+      });
+    }
+    if (usert.databases < database) {
+      return res
+        .status(400)
+        .json({
+          status: "failed",
+          success: false,
+          message: "Insufficient Databases available",
+        });
     }
 
     const user = usert.id;

@@ -37,6 +37,7 @@ router.get("/api/servers/", checkAuth, async (req, res) => {
           cpu: server.attributes.limits.cpu,
           databases: server.attributes.feature_limits.databases,
           allocations: server.attributes.feature_limits.allocations,
+          suspended: server.attributes.suspended,
         })
       ) || [];
 

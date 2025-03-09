@@ -56,9 +56,15 @@ async function fetchNodes() {
       // Check if the node file already exists
       if (!fs.existsSync(nodeFilePath)) {
         fs.writeFileSync(nodeFilePath, JSON.stringify(attributes, null, 4));
-        console.log(`Node ${attributes.name} has been saved!`);
+        console.log(
+          "\x1b[36m%s\x1b[0m",
+          `Node ${attributes.name} has been saved!`
+        );
       } else {
-        console.log(`Node ${attributes.name} already exists, skipping...`);
+        console.log(
+          "\x1b[36m%s\x1b[0m",
+          `Node ${attributes.name} already exists, skipping...`
+        );
       }
     });
   } catch (error) {

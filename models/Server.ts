@@ -16,6 +16,10 @@ const Server = db.define("server", {
     type: DataTypes.DATE,
     allowNull: !config.renewal.enabled,
   },
+  suspend: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
 });
 
 export default Server;
