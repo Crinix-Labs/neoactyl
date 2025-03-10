@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Title from "../components/title";
+import Discordembed from "../components/discord";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -32,8 +33,19 @@ const Login = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-zinc-900">
-      <div className="p-8 rounded-lg shadow-md w-96 border-2 border-zinc-800 border-dashed">
+      <div className="p-8 rounded-lg shadow-md border-2 border-zinc-800 border-dashed flex flex-row justify-center items-center">
+        {/* Logo And Title */}
+        <div className=" p-4 hidden sm:block">
         <Title />
+        <div className="p-4 rounded-lg">
+        <Discordembed />
+        </div>
+        </div>
+        {/* Divider */}
+        <div className="divider divider-horizontal hidden sm:block"></div>
+        {/* Login Form */}
+        <div className="p-4 ">
+
         <h1 className="text-2xl font-semibold text-center mb-2 text-white">👋 Welcome to Neoactyl</h1>
         <p className="text-white text-center mb-6 text-sm">Login or create an account</p>
 
@@ -71,7 +83,7 @@ const Login = () => {
         </form>
 
         <p className="text-white text-sm text-center mt-4">
-          Don't have an account? <Link to="/register" className="text-blue-500 hover:text-blue-600">Register</Link>
+          Don't have an account? <Link to="/register" className="text-blue-500 hover:text-blue-600 ">Register</Link>
         </p>
 
         <div className="flex items-center justify-center my-4">
@@ -89,6 +101,8 @@ const Login = () => {
           <img src="https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/google.svg" alt="Google" className="h-5 w-5 mr-2 invert" />
           Login with Google
         </a>
+                  
+        </div>
       </div>
     </div>
   );
