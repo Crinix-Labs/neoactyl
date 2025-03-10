@@ -4,6 +4,7 @@ import Login from './auth/login'
 import Dashboard from './dashboard/dashboard'
 import Register from './auth/register'
 import Loading from './components/loading'
+import  '../public/assets/app.css'
 
 const LoadingWrapper = ({ children }) => {
   const [loading, setLoading] = useState(true);
