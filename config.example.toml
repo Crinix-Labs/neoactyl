@@ -9,10 +9,16 @@ listen = "localhost"
 port = 5000 # the port to listen on allowed value{ integer(5), string(auto_ptrl) : for pterodactyl auto}
 
 [discord]
+enabled = true
 clientId = "null"
-ClientSecret = "null"
+clientSecret = "null"
 callback = "/api/auth/discord" # /api can't be removed or it will not work
-# Discord auth not available 
+
+[google]
+enabled = true
+clientId = "0000000000000000000000.apps.googleusercontent.com"
+clientSecret = "GOCSPX-0000000000000000000000000"
+callback = "/api/auth/google/callback" # /api can't be removed or it will not work
 
 [database]
 type = "sqlite"

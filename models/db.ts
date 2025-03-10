@@ -20,7 +20,7 @@ const sequelize = new Sequelize(
     storage: isMySQL
       ? undefined
       : path.join(process.cwd(), config.database.filename),
-    logging: false, // Disable SQL logging
+    logging: true, // Disable SQL logging
   }
 );
 

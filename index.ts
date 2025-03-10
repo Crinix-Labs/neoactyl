@@ -24,6 +24,7 @@ import nodeRoute from "./api/nodes.ts";
 import serverRoute from "./api/server.ts";
 import meRoute from "./api/meRoute.ts";
 import { ASCII_ART } from "./ascii.ts";
+import googleAuthRoute from "./api/google.ts";
 
 // app
 const app = Express();
@@ -55,8 +56,9 @@ app.use(discord);
 app.use(nodeRoute);
 app.use(serverRoute);
 app.use(meRoute);
+app.use(googleAuthRoute);
 
-app.listen(config.domain.port, config.domain.listen, () => {
+app.listen(config.domain.port, () => {
   console.clear();
   console.log("\x1b[36m%s\x1b[0m", ASCII_ART);
   console.log(

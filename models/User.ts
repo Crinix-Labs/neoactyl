@@ -3,7 +3,9 @@ import sequelize from "./db.ts";
 import toml from "toml";
 import fs from "node:fs";
 
-const config = toml.parse(fs.readFileSync(process.cwd() + "/config.toml", "utf-8"));
+const config = toml.parse(
+  fs.readFileSync(process.cwd() + "/config.toml", "utf-8")
+);
 
 const User = sequelize.define("user", {
   id: {
@@ -59,6 +61,10 @@ const User = sequelize.define("user", {
   servers: {
     type: DataTypes.INTEGER,
     defaultValue: 0,
+  },
+  googleId: {
+    type: DataTypes.INTEGER,
+    allowNull: true,
   },
 });
 
